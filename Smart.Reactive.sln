@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		README.md = README.md
+		Smart.Reactive.ruleset = Smart.Reactive.ruleset
+		Smart.Reactive.sln.DotSettings = Smart.Reactive.sln.DotSettings
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart.Reactive.PCL", "Smart.Reactive.PCL\Smart.Reactive.PCL.csproj", "{03F3025B-925A-4F27-92C2-972549D52B60}"
@@ -18,7 +20,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart.Reactive.Net4", "Smar
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Smart.Reactive\Smart.Reactive.projitems*{03f3025b-925a-4f27-92c2-972549d52b60}*SharedItemsImports = 4
 		Smart.Reactive\Smart.Reactive.projitems*{090deed2-b548-46e5-a5e9-858fab4ce4e5}*SharedItemsImports = 13
+		Smart.Reactive\Smart.Reactive.projitems*{93f7b6d5-16d0-4396-a57b-6498387e0dc3}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

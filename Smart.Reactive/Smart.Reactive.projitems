@@ -9,5 +9,6 @@
     <Import_RootNamespace>Smart.Reactive</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Reactive\NotifyPropertyChangedExtensions.cs" />
   </ItemGroup>
 </Project>
