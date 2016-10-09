@@ -6,7 +6,7 @@
     /// <summary>
     ///
     /// </summary>
-    public static class ObservableExtensions
+    public static partial class ObservableExtensions
     {
         /// <summary>
         ///

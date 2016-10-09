@@ -10,7 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Reactive\DisposableExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reactive\NotifyDataErrorInfoExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reactive\NotifyPropertyChangedExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Reactive\ObservableExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reactive\ObservableExtensions.Bind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reactive\ObservableExtensions.Pairwise.cs" />
   </ItemGroup>
 </Project>

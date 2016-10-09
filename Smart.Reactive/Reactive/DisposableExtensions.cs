@@ -1,6 +1,8 @@
 ﻿namespace Smart.Reactive.Reactive
 {
     using System;
+    using System.Collections.Generic;
+
     using System.Reactive.Disposables;
 
     /// <summary>
@@ -12,15 +14,17 @@
         ///
         /// </summary>
         /// <param name="disposable"></param>
-        /// <param name="compositeDisposable"></param>
-        public static void AddDisposableTo(this IDisposable disposable, CompositeDisposable compositeDisposable)
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IDisposable AddTo(this IDisposable disposable, ICollection<IDisposable> collection)
         {
-            if (compositeDisposable == null)
+            if (collection == null)
             {
-                throw new ArgumentNullException(nameof(compositeDisposable));
+                throw new ArgumentNullException(nameof(collection));
             }
 
-            compositeDisposable.Add(disposable);
+            collection.Add(disposable);
+            return disposable;
         }
     }
 }
