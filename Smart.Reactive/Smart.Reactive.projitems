@@ -6,13 +6,13 @@
     <SharedGUID>090deed2-b548-46e5-a5e9-858fab4ce4e5</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Smart.Reactive</Import_RootNamespace>
+    <Import_RootNamespace>Smart</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\NotifyDataErrorInfoExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\NotifyPropertyChangedExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ObservableExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reactive\DisposableExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Reactive\NotifyDataErrorInfoExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Reactive\NotifyPropertyChangedExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Reactive\ObservableExtensions.Bind.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Reactive\ObservableExtensions.Pairwise.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reactive\ObservableExtensions.cs" />
   </ItemGroup>
 </Project>

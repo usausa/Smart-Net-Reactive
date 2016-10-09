@@ -1,4 +1,4 @@
-﻿namespace Smart.Reactive.Reactive
+﻿namespace Smart.Reactive
 {
     using System;
     using System.Reactive.Linq;
@@ -6,7 +6,7 @@
     /// <summary>
     ///
     /// </summary>
-    public static partial class ObservableExtensions
+    public static class ObservableExtensions
     {
         /// <summary>
         ///

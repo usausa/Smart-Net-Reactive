@@ -1,4 +1,4 @@
-﻿namespace Smart.Reactive.Reactive
+﻿namespace Smart.ComponentModel
 {
     using System;
     using System.ComponentModel;

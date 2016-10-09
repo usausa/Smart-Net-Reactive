@@ -1,4 +1,4 @@
-﻿namespace Smart.Reactive.Reactive
+﻿namespace Smart.Reactive
 {
     using System;
     using System.Collections.Generic;
