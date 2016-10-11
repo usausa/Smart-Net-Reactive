@@ -5,7 +5,7 @@
     /// <summary>
     ///
     /// </summary>
-    public static partial class ObservableExtensions
+    public static class ObservableExtensions
     {
         /// <summary>
         ///
@@ -14,7 +14,7 @@
         /// <param name="observable"></param>
         /// <param name="holder"></param>
         /// <returns></returns>
-        public static IDisposable Bind<T>(this IObservable<T> observable, IValueHolder<T> holder)
+        public static IDisposable SubscribeValue<T>(this IObservable<T> observable, IValueHolder<T> holder)
         {
             return observable.Subscribe(_ => holder.Value = _);
         }
