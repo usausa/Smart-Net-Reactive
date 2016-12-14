@@ -16,7 +16,7 @@
         /// <returns></returns>
         public static IDisposable SubscribeValue<T>(this IObservable<T> observable, IValueHolder<T> holder)
         {
-            return observable.Subscribe(_ => holder.Value = _);
+            return observable.Subscribe(x => holder.Value = x);
         }
     }
 }
