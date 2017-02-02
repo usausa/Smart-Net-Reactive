@@ -12,7 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\NotifyDataErrorInfoExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\NotifyPropertyChangedExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ObservableExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ComponentModel\ObservableValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reactive\DisposableExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reactive\ObservableExtensions.cs" />
   </ItemGroup>
