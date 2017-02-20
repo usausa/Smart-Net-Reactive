@@ -14,7 +14,7 @@
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static IObservable<DataErrorsChangedEventArgs> AsObservable(
+        public static IObservable<DataErrorsChangedEventArgs> ErrorsChangedAsObservable(
             this INotifyDataErrorInfo source)
         {
             return Observable.FromEvent<EventHandler<DataErrorsChangedEventArgs>, DataErrorsChangedEventArgs>(
@@ -30,13 +30,13 @@
         /// <param name="source"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static IObservable<T> AsObservable<T>(
+        public static IObservable<T> ErrorsChangedAsObservable<T>(
             this T source,
             string propertyName)
             where T : INotifyDataErrorInfo
         {
             return source
-                .AsObservable()
+                .ErrorsChangedAsObservable()
                 .Where(x => x.PropertyName == propertyName)
                 .Select(x => source);
         }

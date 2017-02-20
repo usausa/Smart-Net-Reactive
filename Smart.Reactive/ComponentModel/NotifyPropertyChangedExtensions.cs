@@ -14,7 +14,7 @@
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static IObservable<PropertyChangedEventArgs> AsObservable(
+        public static IObservable<PropertyChangedEventArgs> PropertyChangedAsObservable(
             this INotifyPropertyChanged source)
         {
             return Observable.FromEvent<PropertyChangedEventHandler, PropertyChangedEventArgs>(
@@ -30,13 +30,13 @@
         /// <param name="source"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static IObservable<T> AsObservable<T>(
+        public static IObservable<T> PropertyChangedAsObservable<T>(
             this T source,
             string propertyName)
             where T : INotifyPropertyChanged
         {
             return source
-                .AsObservable()
+                .PropertyChangedAsObservable()
                 .Where(x => x.PropertyName == propertyName)
                 .Select(x => source);
         }
