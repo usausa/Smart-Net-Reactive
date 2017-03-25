@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Usa.Smart.Reactive</id>
-    <version>0.3.0</version>
+    <version>1.0.0.0-beta</version>
     <title>Smart.Reactive .NET</title>
     <authors>machi_pon</authors>
     <owners>machi_pon</owners>
@@ -13,23 +13,15 @@
     <copyright></copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="System.Reactive.Interfaces" version="3.0.0" />
-      <dependency id="System.Reactive.Core" version="3.0.0" />
-      <dependency id="System.Reactive.Linq" version="3.0.0" />
-      <dependency id="System.Reactive.PlatformServices" version="3.0.0" />
-      <dependency id="Usa.Smart.Core" version="0.7.0" />
+      <dependency id="System.Reactive" version="3.1.1" />
+      <dependency id="Usa.Smart.Core" version="1.0.0-beta4" />
     </dependencies>
     <tags>smart rx</tags>
   </metadata>
   <files>
-    <!-- .NET 4.6.2 -->
-    <file src="Smart.Reactive.NET4\bin\Release\Smart.Reactive.dll" target="lib\net462\Smart.Reactive.dll" />
-    <file src="Smart.Reactive.NET4\bin\Release\Smart.Reactive.pdb" target="lib\net462\Smart.Reactive.pdb" />
-    <!--<file src="Smart.Reactive.NET4\bin\Release\Smart.Reactive.xml" target="lib\net462\Smart.Reactive.xml" />-->
-
-    <!-- PCL -->
-    <file src="Smart.Reactive.PCL\bin\Release\Smart.Reactive.dll" target="lib\portable-net45+win8+wpa81\Smart.Reactive.dll" />
-    <file src="Smart.Reactive.PCL\bin\Release\Smart.Reactive.pdb" target="lib\portable-net45+win8+wpa81\Smart.Reactive.pdb" />
-    <!--<file src="Smart.Reactive.PCL\bin\Release\Smart.Reactive.xml" target="lib\portable-net45+win8+wpa81\Smart.Reactive.xml" />-->
+    <!-- .NET Standard -->
+    <file src="Smart.Reactive\bin\Release\netstandard1.1\Smart.Reactive.dll" target="lib\netstandard1.1" />
+    <!--<file src="Smart.Reactive\bin\Release\netstandard1.1\Smart.Reactive.pdb" target="lib\netstandard1.1" />-->
+    <!--<file src="Smart.Reactive\bin\Release\netstandard1.1\Smart.Reactive.xml" target="lib\netstandard1.1" />-->
   </files>
 </package>
