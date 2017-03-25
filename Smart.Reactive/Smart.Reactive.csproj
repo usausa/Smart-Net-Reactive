@@ -5,11 +5,16 @@
     <RootNamespace>Smart</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\Smart.Reactive.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="Smart.Reactive.projitems" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.0" />
     <PackageReference Include="System.Reactive" Version="3.1.1" />
     <PackageReference Include="Usa.Smart.Core" Version="1.0.0-beta4" />
   </ItemGroup>
