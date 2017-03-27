@@ -14,7 +14,8 @@
         /// <param name="disposable"></param>
         /// <param name="collection"></param>
         /// <returns></returns>
-        public static IDisposable AddTo(this IDisposable disposable, ICollection<IDisposable> collection)
+        public static T AddTo<T>(this T disposable, ICollection<IDisposable> collection)
+            where T : IDisposable
         {
             if (collection == null)
             {
