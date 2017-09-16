@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Usa.Smart.Reactive</id>
-    <version>0.9.0</version>
+    <version>1.0.0</version>
     <title>Smart.Reactive .NET</title>
     <authors>machi_pon</authors>
     <owners>machi_pon</owners>
@@ -14,14 +14,14 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
       <dependency id="System.Reactive" version="3.1.1" />
-      <dependency id="Usa.Smart.Core" version="0.9.0" />
+      <dependency id="Usa.Smart.Core" version="1.0.1" />
     </dependencies>
     <tags>smart rx</tags>
   </metadata>
   <files>
     <!-- .NET Standard -->
-    <file src="Smart.Reactive\bin\Release\netstandard1.1\Smart.Reactive.dll" target="lib\netstandard1.1" />
-    <!--<file src="Smart.Reactive\bin\Release\netstandard1.1\Smart.Reactive.pdb" target="lib\netstandard1.1" />-->
-    <!--<file src="Smart.Reactive\bin\Release\netstandard1.1\Smart.Reactive.xml" target="lib\netstandard1.1" />-->
+    <file src="Smart.Reactive\bin\Release\netstandard2.0\Smart.Reactive.dll" target="lib\netstandard2.0" />
+    <!--<file src="Smart.Reactive\bin\Release\netstandard2.0\Smart.Reactive.pdb" target="lib\netstandard2.0" />-->
+    <!--<file src="Smart.Reactive\bin\Release\netstandard2.0\Smart.Reactive.xml" target="lib\netstandard2.0" />-->
   </files>
 </package>
