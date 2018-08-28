@@ -17,10 +17,12 @@
     <Rule Id="SA1607" Action="Hidden" />
     <Rule Id="SA1614" Action="Hidden" />
     <Rule Id="SA1616" Action="Hidden" />
+    <Rule Id="SA1618" Action="Hidden" />
     <Rule Id="SA1622" Action="Hidden" />
     <Rule Id="SA1623" Action="Hidden" />
     <Rule Id="SA1633" Action="Hidden" />
     <Rule Id="SA1642" Action="Hidden" />
+    <Rule Id="SA1643" Action="Hidden" />
     <Rule Id="SA1652" Action="Hidden" />
   </Rules>
 </RuleSet>
