@@ -17,7 +17,7 @@
         public static T AddTo<T>(this T disposable, ICollection<IDisposable> collection)
             where T : IDisposable
         {
-            if (collection == null)
+            if (collection is null)
             {
                 throw new ArgumentNullException(nameof(collection));
             }
