@@ -1,19 +1,10 @@
-﻿namespace Smart.Reactive
+namespace Smart.Reactive
 {
     using System;
     using System.Collections.Generic;
 
-    /// <summary>
-    ///
-    /// </summary>
     public static class DisposableExtensions
     {
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="disposable"></param>
-        /// <param name="collection"></param>
-        /// <returns></returns>
         public static T AddTo<T>(this T disposable, ICollection<IDisposable> collection)
             where T : IDisposable
         {

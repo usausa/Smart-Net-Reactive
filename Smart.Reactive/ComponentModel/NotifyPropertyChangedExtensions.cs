@@ -1,19 +1,11 @@
-﻿namespace Smart.ComponentModel
+namespace Smart.ComponentModel
 {
     using System;
     using System.ComponentModel;
     using System.Reactive.Linq;
 
-    /// <summary>
-    ///
-    /// </summary>
     public static class NotifyPropertyChangedExtensions
     {
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
         public static IObservable<PropertyChangedEventArgs> PropertyChangedAsObservable(
             this INotifyPropertyChanged source)
         {
@@ -23,13 +15,6 @@
                 h => source.PropertyChanged -= h);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="propertyName"></param>
-        /// <returns></returns>
         public static IObservable<T> PropertyChangedAsObservable<T>(
             this T source,
             string propertyName)
@@ -41,12 +26,6 @@
                 .Select(x => source);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
         public static IObservable<T> AsObservable<T>(
             this NotificationValue<T> source)
         {

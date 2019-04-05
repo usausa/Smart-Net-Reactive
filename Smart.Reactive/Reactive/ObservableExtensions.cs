@@ -1,21 +1,10 @@
-﻿namespace Smart.Reactive
+namespace Smart.Reactive
 {
     using System;
     using System.Reactive.Linq;
 
-    /// <summary>
-    ///
-    /// </summary>
     public static class ObservableExtensions
     {
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="selector"></param>
-        /// <returns></returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
         public static IObservable<TResult> Pairwise<T, TResult>(this IObservable<T> source, Func<T, T, TResult> selector)
         {
