@@ -13,8 +13,8 @@
     <copyright></copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="System.Reactive" version="4.0.0" />
-      <dependency id="Usa.Smart.Core" version="1.6.0" />
+      <dependency id="System.Reactive" version="4.1.3" />
+      <dependency id="Usa.Smart.Core" version="1.7.0" />
     </dependencies>
     <tags>smart rx</tags>
   </metadata>
