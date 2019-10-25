@@ -15,7 +15,7 @@ namespace Smart.ComponentModel
                 h => source.PropertyChanged -= h);
         }
 
-        public static IObservable<T> PropertyChangedAsObservable<T>(
+        public static IObservable<T> AsObservable<T>(
             this T source,
             string propertyName)
             where T : INotifyPropertyChanged
@@ -27,12 +27,19 @@ namespace Smart.ComponentModel
         }
 
         public static IObservable<T> AsObservable<T>(
+            this T source)
+            where T : INotifyPropertyChanged
+        {
+            return source
+                .PropertyChangedAsObservable()
+                .Select(x => source);
+        }
+
+        public static IObservable<T> AsValueObservable<T>(
             this NotificationValue<T> source)
         {
-            return Observable.FromEvent<PropertyChangedEventHandler, PropertyChangedEventArgs>(
-                    h => (s, e) => h(e),
-                    h => source.PropertyChanged += h,
-                    h => source.PropertyChanged -= h)
+            return source
+                .PropertyChangedAsObservable()
                 .Where(x => x.PropertyName == nameof(NotificationValue<T>.Value))
                 .Select(x => source.Value);
         }
