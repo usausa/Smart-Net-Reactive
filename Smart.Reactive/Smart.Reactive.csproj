@@ -1,14 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;netstandard2.0;net462</TargetFrameworks>
     <RootNamespace>Smart</RootNamespace>
     <CodeAnalysisRuleSet>..\Smart.Reactive.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Reactive" Version="4.2.0" />
-    <PackageReference Include="Usa.Smart.Core" Version="1.7.8" />
+    <PackageReference Include="System.Reactive" Version="4.3.1" />
+    <PackageReference Include="Usa.Smart.Core" Version="1.8.0" />
   </ItemGroup>
 
 </Project>
