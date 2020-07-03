@@ -6,6 +6,14 @@
     <CodeAnalysisRuleSet>..\Smart.Reactive.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>Usa.Smart.Reactive</PackageId>
+    <Title>Smart.Reactive .NET</Title>
+    <Description>Smart Reactive support library for .NET</Description>
+    <Summary>Smart Reactive support library for .NET</Summary>
+    <PackageTags>smart rx reactive</PackageTags>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="System.Reactive" Version="4.4.1" />
     <PackageReference Include="Usa.Smart.Core" Version="1.8.8" />
