@@ -10,12 +10,12 @@ namespace Smart.ComponentModel
             this INotifyDataErrorInfo source)
         {
             return Observable.FromEvent<EventHandler<DataErrorsChangedEventArgs>, DataErrorsChangedEventArgs>(
-                h => (sender, e) => h(e),
+                h => (_, e) => h(e),
                 h => source.ErrorsChanged += h,
                 h => source.ErrorsChanged -= h);
         }
 
-        public static IObservable<T> ErrorsChangedAsObservable<T>(
+        public static IObservable<T?> ErrorsChangedAsObservable<T>(
             this T source,
             string propertyName)
             where T : INotifyDataErrorInfo
@@ -23,7 +23,7 @@ namespace Smart.ComponentModel
             return source
                 .ErrorsChangedAsObservable()
                 .Where(x => x.PropertyName == propertyName)
-                .Select(x => source);
+                .Select(_ => source);
         }
     }
 }

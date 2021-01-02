@@ -5,7 +5,7 @@ namespace Smart.ComponentModel
 
     public abstract class DisposableNotificationObject : NotificationObject, IDisposable
     {
-        protected CompositeDisposable Disposables { get; } = new CompositeDisposable();
+        protected CompositeDisposable Disposables { get; } = new();
 
         ~DisposableNotificationObject()
         {
