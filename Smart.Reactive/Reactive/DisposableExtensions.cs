@@ -5,14 +5,10 @@ namespace Smart.Reactive
 
     public static class DisposableExtensions
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         public static T AddTo<T>(this T disposable, ICollection<IDisposable> collection)
             where T : IDisposable
         {
-            if (collection is null)
-            {
-                throw new ArgumentNullException(nameof(collection));
-            }
-
             collection.Add(disposable);
             return disposable;
         }
