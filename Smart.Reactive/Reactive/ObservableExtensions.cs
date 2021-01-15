@@ -1,4 +1,4 @@
-namespace Smart.Reactive
+﻿namespace Smart.Reactive
 {
     using System;
     using System.Reactive.Linq;
