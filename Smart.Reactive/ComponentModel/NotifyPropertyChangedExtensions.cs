@@ -15,7 +15,7 @@ namespace Smart.ComponentModel
                 h => source.PropertyChanged -= h);
         }
 
-        public static IObservable<T?> AsObservable<T>(
+        public static IObservable<T> AsObservable<T>(
             this T source,
             string propertyName)
             where T : INotifyPropertyChanged
@@ -26,7 +26,7 @@ namespace Smart.ComponentModel
                 .Select(_ => source);
         }
 
-        public static IObservable<T?> AsObservable<T>(
+        public static IObservable<T> AsObservable<T>(
             this T source)
             where T : INotifyPropertyChanged
         {
@@ -35,8 +35,8 @@ namespace Smart.ComponentModel
                 .Select(_ => source);
         }
 
-        public static IObservable<T?> AsValueObservable<T>(
-            this NotificationValue<T?> source)
+        public static IObservable<T> AsValueObservable<T>(
+            this NotificationValue<T> source)
         {
             return source
                 .PropertyChangedAsObservable()

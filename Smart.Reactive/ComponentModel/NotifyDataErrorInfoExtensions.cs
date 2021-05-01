@@ -15,7 +15,7 @@ namespace Smart.ComponentModel
                 h => source.ErrorsChanged -= h);
         }
 
-        public static IObservable<T?> ErrorsChangedAsObservable<T>(
+        public static IObservable<T> ErrorsChangedAsObservable<T>(
             this T source,
             string propertyName)
             where T : INotifyDataErrorInfo
