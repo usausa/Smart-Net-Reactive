@@ -1,29 +1,28 @@
-namespace Smart.ComponentModel
+namespace Smart.ComponentModel;
+
+using System;
+using System.Reactive.Disposables;
+
+public abstract class DisposableNotificationObject : NotificationObject, IDisposable
 {
-    using System;
-    using System.Reactive.Disposables;
+    protected CompositeDisposable Disposables { get; } = new();
 
-    public abstract class DisposableNotificationObject : NotificationObject, IDisposable
+    ~DisposableNotificationObject()
     {
-        protected CompositeDisposable Disposables { get; } = new();
+        Dispose(false);
+    }
 
-        ~DisposableNotificationObject()
-        {
-            Dispose(false);
-        }
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
-        public void Dispose()
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                Disposables.Dispose();
-            }
+            Disposables.Dispose();
         }
     }
 }

@@ -1,43 +1,42 @@
-namespace Smart.Reactive
+namespace Smart.Reactive;
+
+using System;
+using System.Reactive.Linq;
+
+public static class ObservableExtensions
 {
-    using System;
-    using System.Reactive.Linq;
-
-    public static class ObservableExtensions
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
+    public static IObservable<TResult> Pairwise<T, TResult>(this IObservable<T> source, Func<T, T, TResult> selector)
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
-        public static IObservable<TResult> Pairwise<T, TResult>(this IObservable<T> source, Func<T, T, TResult> selector)
+        return Observable.Create<TResult>(observer =>
         {
-            return Observable.Create<TResult>(observer =>
-            {
-                var prev = default(T);
-                var isFirst = true;
+            var prev = default(T);
+            var isFirst = true;
 
-                return source.Subscribe(x =>
+            return source.Subscribe(x =>
+            {
+                if (isFirst)
                 {
-                    if (isFirst)
+                    isFirst = false;
+                    prev = x;
+                }
+                else
+                {
+                    TResult value;
+                    try
                     {
-                        isFirst = false;
+                        value = selector(prev!, x);
                         prev = x;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        TResult value;
-                        try
-                        {
-                            value = selector(prev!, x);
-                            prev = x;
-                        }
-                        catch (Exception ex)
-                        {
-                            observer.OnError(ex);
-                            return;
-                        }
-
-                        observer.OnNext(value);
+                        observer.OnError(ex);
+                        return;
                     }
-                }, observer.OnError, observer.OnCompleted);
-            });
-        }
+
+                    observer.OnNext(value);
+                }
+            }, observer.OnError, observer.OnCompleted);
+        });
     }
 }
