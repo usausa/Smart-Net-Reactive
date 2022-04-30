@@ -1,6 +1,5 @@
 namespace Smart.ComponentModel;
 
-using System;
 using System.ComponentModel;
 using System.Reactive.Linq;
 

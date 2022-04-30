@@ -1,6 +1,5 @@
 namespace Smart.Reactive;
 
-using System;
 using System.Reactive.Linq;
 
 public static class ObservableExtensions

@@ -1,7 +1,5 @@
 namespace Smart.ComponentModel;
 
-using System;
-
 public static class ObservableExtensions
 {
     public static IDisposable SubscribeValue<T>(

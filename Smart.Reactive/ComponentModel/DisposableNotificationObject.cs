@@ -1,6 +1,5 @@
 namespace Smart.ComponentModel;
 
-using System;
 using System.Reactive.Disposables;
 
 public abstract class DisposableNotificationObject : NotificationObject, IDisposable

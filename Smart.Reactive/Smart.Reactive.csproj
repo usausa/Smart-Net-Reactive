@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
@@ -8,9 +8,9 @@
 
   <PropertyGroup>
     <PackageId>Usa.Smart.Reactive</PackageId>
-    <Title>Smart.Reactive .NET</Title>
-    <Description>Smart Reactive support library for .NET</Description>
-    <Summary>Smart Reactive support library for .NET</Summary>
+    <Title>Smart.Reactive</Title>
+    <Description>Smart Reactive support library</Description>
+    <Summary>Smart Reactive support library</Summary>
     <PackageTags>smart rx reactive</PackageTags>
   </PropertyGroup>
 

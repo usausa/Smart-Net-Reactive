@@ -1,6 +1,5 @@
 namespace Smart.Reactive;
 
-using System;
 using System.Reactive.Disposables;
 
 public static class DisposableExtensions
