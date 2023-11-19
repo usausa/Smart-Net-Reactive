@@ -4,7 +4,7 @@ using System.Reactive.Linq;
 
 public static class ObservableExtensions
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
+#pragma warning disable CA1031
     public static IObservable<TResult> Pairwise<T, TResult>(this IObservable<T> source, Func<T, T, TResult> selector)
     {
         return Observable.Create<TResult>(observer =>
@@ -38,4 +38,5 @@ public static class ObservableExtensions
             }, observer.OnError, observer.OnCompleted);
         });
     }
+#pragma warning disable CA1031
 }
