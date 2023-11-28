@@ -10,7 +10,6 @@
     <PackageId>Usa.Smart.Reactive</PackageId>
     <Title>Smart.Reactive</Title>
     <Description>Smart Reactive support library</Description>
-    <Summary>Smart Reactive support library</Summary>
     <PackageTags>smart rx reactive</PackageTags>
   </PropertyGroup>
 

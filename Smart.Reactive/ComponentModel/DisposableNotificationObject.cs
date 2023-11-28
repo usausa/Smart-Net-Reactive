@@ -4,7 +4,7 @@ using System.Reactive.Disposables;
 
 public abstract class DisposableNotificationObject : NotificationObject, IDisposable
 {
-    protected CompositeDisposable Disposables { get; } = new();
+    protected CompositeDisposable Disposables { get; } = [];
 
     ~DisposableNotificationObject()
     {
