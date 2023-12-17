@@ -1,6 +1,6 @@
 namespace Smart.ComponentModel;
 
-public class ObservableValue<T> : NotificationValue<T>, IObservable<T>
+public sealed class ObservableValue<T> : NotificationValue<T>, IObservable<T>
 {
     public IDisposable Subscribe(IObserver<T> observer)
     {
