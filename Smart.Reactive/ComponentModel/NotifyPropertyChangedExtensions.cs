@@ -39,7 +39,7 @@ public static class NotifyPropertyChangedExtensions
     {
         return source
             .PropertyChangedAsObservable()
-            .Where(x => x.PropertyName == nameof(NotificationValue<T>.Value))
+            .Where(x => x.PropertyName == nameof(NotificationValue<>.Value))
             .Select(_ => source.Value);
     }
 }
