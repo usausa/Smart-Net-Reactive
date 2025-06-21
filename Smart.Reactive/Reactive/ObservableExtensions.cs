@@ -4,6 +4,12 @@ using System.Reactive.Linq;
 
 public static class ObservableExtensions
 {
+    public static IObservable<TSource> WhereNotNull<TSource>(this IObservable<TSource?> source) =>
+        source.Where(static x => x is not null)!;
+
+    public static IObservable<TSource> ObserveOnCurrentContext<TSource>(this IObservable<TSource> source) =>
+        source.ObserveOn(SynchronizationContext.Current!);
+
 #pragma warning disable CA1031
     public static IObservable<TResult> Pairwise<T, TResult>(this IObservable<T> source, Func<T, T, TResult> selector)
     {
