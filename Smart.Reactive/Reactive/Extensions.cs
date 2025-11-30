@@ -3,7 +3,7 @@ namespace Smart.Reactive;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 
-public static class ObservableExtensions
+public static class Extensions
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IObservable<TSource> WhereNotNull<TSource>(this IObservable<TSource?> source)
@@ -15,8 +15,11 @@ public static class ObservableExtensions
         where TSource : struct =>
         source.Where(static x => x.HasValue).Select(static x => x!.Value);
 
-    public static IObservable<TSource> ObserveOnCurrentContext<TSource>(this IObservable<TSource> source) =>
-        source.ObserveOn(SynchronizationContext.Current!);
+    public static IObservable<TSource> ObserveOnCurrentContext<TSource>(this IObservable<TSource> source)
+    {
+        var context = SynchronizationContext.Current ?? throw new InvalidOperationException("Current synchronization context is null.");
+        return source.ObserveOn(context);
+    }
 
 #pragma warning disable CA1031
     public static IObservable<TResult> Pairwise<T, TResult>(this IObservable<T> source, Func<T, T, TResult> selector)
@@ -52,5 +55,5 @@ public static class ObservableExtensions
             }, observer.OnError, observer.OnCompleted);
         });
     }
-#pragma warning disable CA1031
+#pragma warning restore CA1031
 }
