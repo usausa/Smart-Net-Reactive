@@ -1,26 +1,21 @@
+#pragma warning disable SA1649 // File name should match first type name
 namespace Smart.Reactive;
 
+// Use case examples:
+//
+// // 直前の値と現在の値を組み合わせて差分を計算する
+// priceStream
+//     .Pairwise((prev, curr) => curr - prev)
+//     .Subscribe(diff => Console.WriteLine($"差分: {diff}"));
+//
+// // 直前と現在の値をタプルで受け取る
+// valueStream
+//     .Pairwise((prev, curr) => (prev, curr))
+//     .Subscribe(pair => Console.WriteLine($"{pair.prev} -> {pair.curr}"));
 using System.Reactive.Linq;
-using System.Runtime.CompilerServices;
 
-public static class Extensions
+public static class ObservablePairwiseExtensions
 {
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IObservable<TSource> WhereNotNull<TSource>(this IObservable<TSource?> source)
-        where TSource : class =>
-        source.Where(static x => x is not null)!;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IObservable<TSource> WhereNotNull<TSource>(this IObservable<TSource?> source)
-        where TSource : struct =>
-        source.Where(static x => x.HasValue).Select(static x => x!.Value);
-
-    public static IObservable<TSource> ObserveOnCurrentContext<TSource>(this IObservable<TSource> source)
-    {
-        var context = SynchronizationContext.Current ?? throw new InvalidOperationException("Current synchronization context is null.");
-        return source.ObserveOn(context);
-    }
-
 #pragma warning disable CA1031
     public static IObservable<TResult> Pairwise<T, TResult>(this IObservable<T> source, Func<T, T, TResult> selector)
     {
