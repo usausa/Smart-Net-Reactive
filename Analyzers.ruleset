@@ -12,7 +12,9 @@
     <Rule Id="SA1516" Action="Hidden" />
     <Rule Id="SA1600" Action="Hidden" />
     <Rule Id="SA1633" Action="Hidden" />
+    <Rule Id="SA1649" Action="Hidden" />
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.NetAnalyzers" RuleNamespace="Microsoft.CodeAnalysis.NetAnalyzers">
+    <Rule Id="CA1062" Action="Hidden" />
   </Rules>
 </RuleSet>

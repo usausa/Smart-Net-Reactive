@@ -1,15 +1,5 @@
-#pragma warning disable SA1649 // File name should match first type name
 namespace Smart.Reactive;
 
-// Use case examples:
-//
-// // null を除外して非null型のストリームを得る (class)
-// IObservable<string?> maybeStrings = ...;
-// IObservable<string> strings = maybeStrings.WhereNotNull();
-//
-// // null を除外して値型のストリームを得る (struct)
-// IObservable<int?> maybeInts = ...;
-// IObservable<int> ints = maybeInts.WhereNotNull();
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 
