@@ -62,9 +62,7 @@ public sealed class ObserveOnCurrentContextTest
             using var subject = new Subject<int>();
 
             // Act & Assert
-#pragma warning disable IDE0200
-            Assert.Throws<InvalidOperationException>(() => subject.ObserveOnCurrentContext());
-#pragma warning restore IDE0200
+            Assert.Throws<InvalidOperationException>(subject.ObserveOnCurrentContext);
         }
         finally
         {

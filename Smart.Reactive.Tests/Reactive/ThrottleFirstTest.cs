@@ -32,6 +32,7 @@ public sealed class ThrottleFirstTest : ReactiveTest
 
         private readonly IScheduler inner;
 
+        // ReSharper disable once MemberCanBePrivate.Local
         public int DisposeCount { get; private set; }
 
         public List<RecordingDisposable> Scheduled { get; } = [];
