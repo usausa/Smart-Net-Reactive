@@ -13,4 +13,5 @@
     <File Path="Smart.Reactive.sln.DotSettings" />
   </Folder>
   <Project Path="Smart.Reactive/Smart.Reactive.csproj" />
+  <Project Path="Smart.Reactive.Tests/Smart.Reactive.Tests.csproj" />
 </Solution>

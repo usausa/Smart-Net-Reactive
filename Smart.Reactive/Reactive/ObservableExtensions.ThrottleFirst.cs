@@ -1,6 +1,7 @@
 namespace Smart.Reactive;
 
 using System.Reactive.Concurrency;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
 public static class ObservableThrottleFirstExtensions
@@ -19,8 +20,9 @@ public static class ObservableThrottleFirstExtensions
         {
             var gate = new object();
             var open = true;
+            var timer = new SerialDisposable();
 
-            return source.Subscribe(
+            var subscription = source.Subscribe(
                 value =>
                 {
                     bool emit;
@@ -40,7 +42,7 @@ public static class ObservableThrottleFirstExtensions
 
                     observer.OnNext(value);
 
-                    scheduler.Schedule(window, () =>
+                    timer.Disposable = scheduler.Schedule(window, () =>
                     {
                         lock (gate)
                         {
@@ -50,6 +52,8 @@ public static class ObservableThrottleFirstExtensions
                 },
                 observer.OnError,
                 observer.OnCompleted);
+
+            return new CompositeDisposable(subscription, timer);
         });
     }
 }
