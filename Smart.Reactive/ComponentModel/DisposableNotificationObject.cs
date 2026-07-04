@@ -6,11 +6,6 @@ public abstract class DisposableNotificationObject : NotificationObject, IDispos
 {
     protected CompositeDisposable Disposables { get; } = [];
 
-    ~DisposableNotificationObject()
-    {
-        Dispose(false);
-    }
-
     public void Dispose()
     {
         Dispose(true);
