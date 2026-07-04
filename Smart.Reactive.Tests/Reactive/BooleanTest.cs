@@ -170,4 +170,76 @@ public sealed class BooleanTest
         // Assert
         Assert.Equal([false, true], results);
     }
+
+    [Fact]
+    public void AndWithEmptyOthersReturnsSameSource()
+    {
+        // Arrange
+        using var s = new Subject<bool>();
+
+        // Act & Assert
+        // With no additional sources, And returns the source unchanged.
+        Assert.Same(s, s.And());
+    }
+
+    [Fact]
+    public void OrWithEmptyOthersReturnsSameSource()
+    {
+        // Arrange
+        using var s = new Subject<bool>();
+
+        // Act & Assert
+        // With no additional sources, Or returns the source unchanged.
+        Assert.Same(s, s.Or());
+    }
+
+    [Fact]
+    public void AndWithManyOthersCombinesAll()
+    {
+        // Arrange
+        // Five inputs (others.Length == 4) exercises the collection CombineLatest path.
+        var results = new List<bool>();
+        using var s1 = new Subject<bool>();
+        using var s2 = new Subject<bool>();
+        using var s3 = new Subject<bool>();
+        using var s4 = new Subject<bool>();
+        using var s5 = new Subject<bool>();
+        s1.And(s2, s3, s4, s5).Subscribe(results.Add);
+
+        // Act
+        s1.OnNext(true);
+        s2.OnNext(true);
+        s3.OnNext(true);
+        s4.OnNext(true);
+        s5.OnNext(true);  // all true => true
+        s5.OnNext(false); // one false => false
+
+        // Assert
+        Assert.Equal([true, false], results);
+    }
+
+    [Fact]
+    public void OrWithManyOthersCombinesAll()
+    {
+        // Arrange
+        // Five inputs (others.Length == 4) exercises the collection CombineLatest path.
+        var results = new List<bool>();
+        using var s1 = new Subject<bool>();
+        using var s2 = new Subject<bool>();
+        using var s3 = new Subject<bool>();
+        using var s4 = new Subject<bool>();
+        using var s5 = new Subject<bool>();
+        s1.Or(s2, s3, s4, s5).Subscribe(results.Add);
+
+        // Act
+        s1.OnNext(false);
+        s2.OnNext(false);
+        s3.OnNext(false);
+        s4.OnNext(false);
+        s5.OnNext(false); // all false => false
+        s5.OnNext(true);  // one true => true
+
+        // Assert
+        Assert.Equal([false, true], results);
+    }
 }
