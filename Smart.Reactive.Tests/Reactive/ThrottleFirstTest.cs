@@ -6,7 +6,7 @@ using Microsoft.Reactive.Testing;
 
 public sealed class ThrottleFirstTest : ReactiveTest
 {
-    // RecordingScheduler wraps an IScheduler and records Dispose calls on scheduled timers.
+    // RecordingScheduler wraps an IScheduler and records Dispose calls on scheduled timers
     private sealed class RecordingScheduler : IScheduler
     {
         internal sealed class RecordingDisposable : IDisposable
@@ -128,12 +128,12 @@ public sealed class ThrottleFirstTest : ReactiveTest
         // When an element arrives at exactly the same tick as the window expires (tick 310),
         // the TestScheduler processes the hot-observable OnNext before the scheduled timer
         // callback, because the hot observable's messages were registered in the queue before
-        // scheduler.Schedule was called from within the OnNext(210) handler.
+        // scheduler.Schedule was called from within the OnNext(210) handler
         //
-        // Observed result: the element at tick 310 is BLOCKED (open = false when element arrives).
+        // Observed result: the element at tick 310 is BLOCKED (open = false when element arrives)
         // The source OnNext at 310 is dequeued before the window-open timer callback at 310,
         // so open is still false when value 2 arrives. This boundary behavior is deterministic
-        // with TestScheduler virtual time: boundary-tick elements fall inside the window.
+        // with TestScheduler virtual time: boundary-tick elements fall inside the window
 
         // Arrange
         var scheduler = new TestScheduler();
@@ -146,9 +146,8 @@ public sealed class ThrottleFirstTest : ReactiveTest
             source.ThrottleFirst(TimeSpan.FromTicks(100), scheduler));
 
         // Assert
-        // At tick 310: the source element arrives while open=false => suppressed.
-        // The window-open timer at 310 fires after (or concurrently with lower priority),
-        // so the boundary element does NOT pass.
+        // At tick 310: the source element arrives while open=false => suppressed
+        // The window-open timer at 310 fires after (or concurrently with lower priority), so the boundary element does NOT pass
         Assert.Equal([OnNext(210, 1)], results.Messages);
     }
 
@@ -192,8 +191,8 @@ public sealed class ThrottleFirstTest : ReactiveTest
     [Fact]
     public void DisposeUnsubscribesTimer()
     {
-        // Verify that when the subscription is disposed, the pending timer is also disposed.
-        // This is the core of the fix: CompositeDisposable(subscription, timer).
+        // Verify that when the subscription is disposed, the pending timer is also disposed
+        // This is the core of the fix: CompositeDisposable(subscription, timer)
 
         // Arrange
         var testScheduler = new TestScheduler();
@@ -229,5 +228,72 @@ public sealed class ThrottleFirstTest : ReactiveTest
         // Assert
         // The timer disposable should now have been disposed via CompositeDisposable
         Assert.True(recordingScheduler.Scheduled[0].IsDisposed);
+    }
+
+    [Fact]
+    public void OnCompletedDisposesPendingTimer()
+    {
+        // Verify that when the source completes while a window timer is still pending, the terminal notification disposes that timer via CompositeDisposable
+
+        // Arrange
+        var testScheduler = new TestScheduler();
+        var recordingScheduler = new RecordingScheduler(testScheduler);
+
+        var source = testScheduler.CreateHotObservable(
+            OnNext(210, 1),
+            OnCompleted<int>(250));
+
+        IDisposable? subscription = null;
+
+        testScheduler.Schedule(TimeSpan.FromTicks(200), () =>
+        {
+            subscription = source
+                .ThrottleFirst(TimeSpan.FromTicks(100), recordingScheduler)
+                .Subscribe(_ => { });
+        });
+
+        // Act
+        // 210 schedules a window timer due at 310; OnCompleted fires at 250, before the window closes
+        testScheduler.AdvanceTo(260);
+
+        // Assert
+        Assert.Single(recordingScheduler.Scheduled);
+        Assert.True(recordingScheduler.Scheduled[0].IsDisposed);
+
+        subscription!.Dispose();
+    }
+
+    [Fact]
+    public void OnErrorDisposesPendingTimer()
+    {
+        // Verify that when the source errors while a window timer is still pending, the terminal notification disposes that timer via CompositeDisposable
+
+        // Arrange
+        var testScheduler = new TestScheduler();
+        var recordingScheduler = new RecordingScheduler(testScheduler);
+        var error = new InvalidOperationException("test error");
+
+        var source = testScheduler.CreateHotObservable(
+            OnNext(210, 1),
+            OnError<int>(250, error));
+
+        IDisposable? subscription = null;
+
+        testScheduler.Schedule(TimeSpan.FromTicks(200), () =>
+        {
+            subscription = source
+                .ThrottleFirst(TimeSpan.FromTicks(100), recordingScheduler)
+                .Subscribe(_ => { }, _ => { });
+        });
+
+        // Act
+        // 210 schedules a window timer due at 310; OnError fires at 250, before the window closes
+        testScheduler.AdvanceTo(260);
+
+        // Assert
+        Assert.Single(recordingScheduler.Scheduled);
+        Assert.True(recordingScheduler.Scheduled[0].IsDisposed);
+
+        subscription!.Dispose();
     }
 }

@@ -101,4 +101,36 @@ public sealed class PairwiseTest : ReactiveTest
         Assert.Equal(NotificationKind.OnError, results.Messages[0].Value.Kind);
         Assert.Equal(error, results.Messages[0].Value.Exception);
     }
+
+    [Fact]
+    public void SelectorExceptionStopsSubsequentValues()
+    {
+        // Arrange
+        var scheduler = new TestScheduler();
+        var error = new InvalidOperationException("selector");
+        var source = scheduler.CreateHotObservable(
+            OnNext(210, 1),
+            OnNext(220, 2),
+            OnNext(230, 3),
+            OnNext(240, 4));
+        var selectorCalls = 0;
+
+        // Act
+        var results = scheduler.Start(() =>
+            source.Pairwise<int, int>((_, _) =>
+            {
+                selectorCalls++;
+                throw error;
+            }));
+
+        // Assert
+        // The selector is invoked once (for the pair at 220) and throws
+        // The upstream subscription is disposed on the exception, so the values at 230 and 240
+        // are never processed and the selector is not called again
+        Assert.Equal(1, selectorCalls);
+        Assert.Single(results.Messages);
+        Assert.Equal(NotificationKind.OnError, results.Messages[0].Value.Kind);
+        Assert.Equal(220, results.Messages[0].Time);
+        Assert.Same(error, results.Messages[0].Value.Exception);
+    }
 }

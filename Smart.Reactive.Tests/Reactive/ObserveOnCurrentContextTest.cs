@@ -29,7 +29,7 @@ public sealed class ObserveOnCurrentContextTest
             var results = new List<int>();
             using var subject = new Subject<int>();
 
-            // ObserveOnCurrentContext captures the current context at subscription time
+            // ObserveOnCurrentContext captures the current context at call time (when the operator is applied), not at subscription time
             subject.ObserveOnCurrentContext().Subscribe(results.Add);
 
             // Act

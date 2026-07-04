@@ -21,7 +21,7 @@ public static class NotifyPropertyChangedExtensions
     {
         return source
             .PropertyChangedAsObservable()
-            .Where(x => x.PropertyName == propertyName)
+            .Where(x => (x.PropertyName == propertyName) || String.IsNullOrEmpty(x.PropertyName))
             .Select(_ => source);
     }
 
@@ -39,7 +39,7 @@ public static class NotifyPropertyChangedExtensions
     {
         return source
             .PropertyChangedAsObservable()
-            .Where(x => x.PropertyName == nameof(NotificationValue<>.Value))
+            .Where(x => (x.PropertyName == nameof(NotificationValue<>.Value)) || String.IsNullOrEmpty(x.PropertyName))
             .Select(_ => source.Value);
     }
 }

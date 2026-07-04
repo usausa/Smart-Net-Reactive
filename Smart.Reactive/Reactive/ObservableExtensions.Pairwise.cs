@@ -1,5 +1,6 @@
 namespace Smart.Reactive;
 
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
 public static class ObservablePairwiseExtensions
@@ -9,33 +10,40 @@ public static class ObservablePairwiseExtensions
     {
         return Observable.Create<TResult>(observer =>
         {
+            var subscription = new SingleAssignmentDisposable();
             var prev = default(T);
             var isFirst = true;
 
-            return source.Subscribe(x =>
-            {
-                if (isFirst)
+            subscription.Disposable = source.Subscribe(
+                x =>
                 {
-                    isFirst = false;
-                    prev = x;
-                }
-                else
-                {
-                    TResult value;
-                    try
+                    if (isFirst)
                     {
-                        value = selector(prev!, x);
+                        isFirst = false;
                         prev = x;
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        observer.OnError(ex);
-                        return;
-                    }
+                        TResult value;
+                        try
+                        {
+                            value = selector(prev!, x);
+                            prev = x;
+                        }
+                        catch (Exception ex)
+                        {
+                            subscription.Dispose();
+                            observer.OnError(ex);
+                            return;
+                        }
 
-                    observer.OnNext(value);
-                }
-            }, observer.OnError, observer.OnCompleted);
+                        observer.OnNext(value);
+                    }
+                },
+                observer.OnError,
+                observer.OnCompleted);
+
+            return subscription;
         });
     }
 #pragma warning restore CA1031
