@@ -38,7 +38,7 @@ public sealed class NotifyPropertyChangedExtensionsTest
     {
         public void Raise(string? propertyName)
         {
-            RaisePropertyChanged(propertyName!);
+            RaisePropertyChanged(propertyName);
         }
     }
 

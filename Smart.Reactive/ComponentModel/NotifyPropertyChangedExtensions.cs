@@ -33,7 +33,7 @@ public static class NotifyPropertyChangedExtensions
     {
         return source
             .PropertyChangedAsObservable()
-            .Where(x => string.IsNullOrEmpty(x.PropertyName) || (x.PropertyName == nameof(NotificationValue<>.Value)))
+            .Where(x => String.IsNullOrEmpty(x.PropertyName) || (x.PropertyName == nameof(NotificationValue<>.Value)))
             .Select(_ => source.Value);
     }
 
@@ -107,7 +107,7 @@ public static class NotifyPropertyChangedExtensions
 
             private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
             {
-                if (string.IsNullOrEmpty(e.PropertyName) || (e.PropertyName == propertyName))
+                if (String.IsNullOrEmpty(e.PropertyName) || (e.PropertyName == propertyName))
                 {
                     observer?.OnNext(source);
                 }
