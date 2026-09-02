@@ -35,9 +35,9 @@ public static class ObservableBooleanExtensions
         Array.Copy(others, 0, sources, 1, others.Length);
         return sources.CombineLatest(static values =>
         {
-            for (var i = 0; i < values.Count; i++)
+            foreach (var value in values)
             {
-                if (!values[i])
+                if (!value)
                 {
                     return false;
                 }
@@ -75,9 +75,9 @@ public static class ObservableBooleanExtensions
         Array.Copy(others, 0, sources, 1, others.Length);
         return sources.CombineLatest(static values =>
         {
-            for (var i = 0; i < values.Count; i++)
+            foreach (var value in values)
             {
-                if (values[i])
+                if (value)
                 {
                     return true;
                 }
