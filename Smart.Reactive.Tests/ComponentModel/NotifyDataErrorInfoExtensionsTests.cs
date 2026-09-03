@@ -3,7 +3,7 @@ namespace Smart.ComponentModel;
 using System.Collections;
 using System.ComponentModel;
 
-public sealed class NotifyDataErrorInfoExtensionsTest
+public sealed class NotifyDataErrorInfoExtensionsTests
 {
     // A test implementation of INotifyDataErrorInfo that tracks add/remove handler calls
     private sealed class TrackingNotifyDataErrorInfo : INotifyDataErrorInfo

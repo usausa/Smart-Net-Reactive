@@ -4,7 +4,7 @@ using System.Reactive;
 
 using Microsoft.Reactive.Testing;
 
-public sealed class PairwiseTest : ReactiveTest
+public sealed class PairwiseTests : ReactiveTest
 {
     [Fact]
     public void SingleElementProducesNoPairs()

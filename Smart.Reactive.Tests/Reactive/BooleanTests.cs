@@ -2,7 +2,7 @@ namespace Smart.Reactive;
 
 using System.Reactive.Subjects;
 
-public sealed class BooleanTest
+public sealed class BooleanTests
 {
     [Fact]
     public void NotInvertsValues()

@@ -2,7 +2,7 @@ namespace Smart.Reactive;
 
 using System.Reactive.Subjects;
 
-public sealed class ObserveOnCurrentContextTest
+public sealed class ObserveOnCurrentContextTests
 {
     // A test SynchronizationContext that records Post calls and executes them synchronously.
     private sealed class RecordingSynchronizationContext : SynchronizationContext

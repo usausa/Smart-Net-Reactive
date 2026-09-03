@@ -2,7 +2,7 @@ namespace Smart.Reactive;
 
 using System.Reactive.Subjects;
 
-public sealed class WhereNotNullTest
+public sealed class WhereNotNullTests
 {
     [Fact]
     public void NullReferenceIsFiltered()

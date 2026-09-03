@@ -4,7 +4,7 @@ using System.Reactive.Concurrency;
 
 using Microsoft.Reactive.Testing;
 
-public sealed class ThrottleFirstTest : ReactiveTest
+public sealed class ThrottleFirstTests : ReactiveTest
 {
     // RecordingScheduler wraps an IScheduler and records Dispose calls on scheduled timers
     private sealed class RecordingScheduler : IScheduler

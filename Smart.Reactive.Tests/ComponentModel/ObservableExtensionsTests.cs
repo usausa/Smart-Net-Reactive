@@ -2,7 +2,7 @@ namespace Smart.ComponentModel;
 
 using System.Reactive.Subjects;
 
-public sealed class ObservableExtensionsTest
+public sealed class ObservableExtensionsTests
 {
     private sealed class ValueHolder<T> : IValueHolder<T>
     {

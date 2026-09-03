@@ -2,7 +2,7 @@ namespace Smart.ComponentModel;
 
 using System.ComponentModel;
 
-public sealed class NotifyPropertyChangedExtensionsTest
+public sealed class NotifyPropertyChangedExtensionsTests
 {
     // A test implementation of INotifyPropertyChanged that tracks add/remove handler calls
     private sealed class TrackingNotifyPropertyChanged : INotifyPropertyChanged
